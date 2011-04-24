@@ -49,3 +49,6 @@
 [submodule "bundle/snipmate"]
 	path = bundle/snipmate
 	url = git://github.com/msanders/snipmate.vim.git
+[submodule "bundle/vim-histortic"]
+	path = bundle/vim-histortic
+	url = https://github.com/PabloSerbo/vim-historic
