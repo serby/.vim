@@ -34,8 +34,15 @@ set incsearch
 set ignorecase
 set smartcase
 
+" Remember last location in file
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+    \| exe "normal g'\"" | endif
+endif
+
 " Colors
-set background=light
+syntax enable
+"set background=light
 colorscheme solarized
 
 filetype plugin on
@@ -105,8 +112,6 @@ autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
-":autocmd! BufWritePost * :LHBackup<cr>
-
  " Taken from Janus - https://github.com/carlhuda/janus
 function! s:setupWrapping()
   set wrap
@@ -121,6 +126,12 @@ endfunction
 
 " md, markdown, and mk are markdown and define buffer-local preview
 au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} call s:setupMarkup()
+
+" Enable syntax highlighting
+let g:syntastic_enable_signs=1
+let g:syntastic_quiet_warnings=1
+
+let g:historicBackupOnSave = 1
 
 " When vimrc is edited, reload it
 autocmd! BufWritePost vimrc source ~/.vim/vimrc

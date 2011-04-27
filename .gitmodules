@@ -52,3 +52,6 @@
 [submodule "bundle/vim-historic"]
 	path = bundle/vim-historic
 	url = git@github.com:PabloSerbo/vim-historic.git
+[submodule "bundle/taglist"]
+	path = bundle/taglist
+	url = https://github.com/vim-scripts/taglist.vim.git
