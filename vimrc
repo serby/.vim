@@ -5,7 +5,7 @@ set laststatus=2
 set statusline=%m\ %{fugitive#statusline()}%=%c:%l/%L
 
 set statusline=
-set statusline+=%f\ %2*%m\ %1*%h
+set statusline+=%n\ %f\ %2*%m\ %1*%h
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%{fugitive#statusline()}
@@ -63,8 +63,8 @@ nmap <leader>n :NERDTreeToggle<cr>
 nmap <leader>= :%s/\s*$//ge<cr>:nohl<cr>
 
 " Git shortcuts
-nmap <leader>l :Glog<cr>
-nmap <leader>b :Gblame<cr>
+"nmap <leader>l :Glog<cr>
+"nmap <leader>b :Gblame<cr>
 nmap <leader>a :Gwrite<cr>
 nmap <leader>c :Gcommit<cr>
 nmap <leader>d :Gdiff<cr>
@@ -112,6 +112,8 @@ autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
+map <leader>l :ls<CR>:b<space>
+
  " Taken from Janus - https://github.com/carlhuda/janus
 function! s:setupWrapping()
   set wrap
@@ -130,6 +132,10 @@ au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} call s:setupMarkup()
 " Enable syntax highlighting
 let g:syntastic_enable_signs=1
 let g:syntastic_quiet_warnings=1
+
+" CTags
+autocmd! FileType php map <leader>rt :!ctags -R -h ".php" --exclude="\.svn" --fields=+afkst --PHP-kinds=+cf *<CR><CR>
+map <C-\> :tnext<CR>
 
 " Command-/ to toggle comments
 map <D-/> <plug>NERDCommenterToggle
