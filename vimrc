@@ -70,7 +70,7 @@ nmap <leader>c :Gcommit<cr>
 nmap <leader>d :Gdiff<cr>
 nmap <leader>s :Gstatus<cr>
 
-nmap <leader>o :tabnew<cr>:NERDTree<cr>
+nmap <leader>o :tabedit <c-r>=expand("%:p:h")<cr><cr>
 
 " Fast editing of the .vimrc
 map <leader>e :tabnew<cr>:e! ~/.vim/vimrc<cr>
@@ -130,6 +130,14 @@ au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} call s:setupMarkup()
 " Enable syntax highlighting
 let g:syntastic_enable_signs=1
 let g:syntastic_quiet_warnings=1
+
+" Command-/ to toggle comments
+map <D-/> <plug>NERDCommenterToggle
+imap <D-/> <Esc><plug>NERDCommenterToggle<CR>i
+
+" Command-][ to increase/decrease indentation
+vmap <D-]> >gv
+vmap <D-[> <gv
 
 let g:historicBackupOnSave = 1
 
