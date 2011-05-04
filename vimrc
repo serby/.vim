@@ -42,7 +42,7 @@ endif
 
 " Colors
 syntax enable
-"set background=light
+set background=light
 colorscheme solarized
 
 filetype plugin on
@@ -60,7 +60,8 @@ nmap <leader>w :w!<cr>
 nmap <leader>n :NERDTreeToggle<cr>
 
 " Remove mixed line endings
-nmap <leader>= :%s/\s*$//ge<cr>:nohl<cr>
+nmap <leader>= :%s/\s*$//e<cr>:nohl<cr>
+
 
 " Git shortcuts
 "nmap <leader>l :Glog<cr>
@@ -70,10 +71,10 @@ nmap <leader>c :Gcommit<cr>
 nmap <leader>d :Gdiff<cr>
 nmap <leader>s :Gstatus<cr>
 
-nmap <leader>o :tabedit <c-r>=expand("%:p:h")<cr><cr>
+nmap <leader>o :edit <c-r>=expand("%:p:h")<cr><cr>
 
 " Fast editing of the .vimrc
-map <leader>e :tabnew<cr>:e! ~/.vim/vimrc<cr>
+map <leader>e :e! ~/.vim/vimrc<cr>
 
 " add json syntax highlighting
 au BufNewFile,BufRead *.json set ft=javascript
@@ -85,24 +86,31 @@ autocmd! FileType javascript nmap <leader>m :!node --debug %<cr>
 autocmd! FileType vim nmap <c-m>:source %<cr>
 autocmd! FileType php nmap <leader>m :!php %<cr>
 autocmd! FileType php nmap <leader>l :!php -l %<cr>
+autocmd! BufWrite *.php :%s/\s\+$//e
 
-map <leader>] :tabnext<cr>
-map <leader>[ :tabprevious<cr>
+
+" Buffer navigation
+map <leader>l :ls<cr>:b<space>
+map <leader>q :bd<cr>
+map <leader>] :bn<cr>
+map <leader>[ :bp<cr>
 
 " Stop arrow keys
-" nmap <up> ]
-" nmap <right> ]
-" nmap <left> ]
-" nmap <down> ]
+nmap <up> ]
+nmap <right> ]
+nmap <left> ]
+nmap <down> ]
+
+autocmd! FileType php map <c-p> :!open http://uk3.php.net/<cword><cr>
 
 " Moving lines up and down
 "
 " Bubble single lines
-nmap <C-Up> ddkP
-nmap <C-Down> ddp
+nmap <c-k> ddkP
+nmap <c-j> ddp
 " Bubble multiple lines
-vmap <C-Up> xkP`[V`]
-vmap <C-Down> xp`[V`]
+vmap <c-j> xkP`[V`]
+vmap <c-k> xp`[V`]
 
 " Highlight tailing whitespace
 highlight ExtraWhitespace guibg=red
@@ -111,23 +119,6 @@ autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
-
-map <leader>l :ls<CR>:b<space>
-
- " Taken from Janus - https://github.com/carlhuda/janus
-function! s:setupWrapping()
-  set wrap
-  set wrapmargin=2
-  set textwidth=72
-endfunction
-
-function! s:setupMarkup()
-  call s:setupWrapping()
-  map <buffer> <Leader>p :Mm <CR>
-endfunction
-
-" md, markdown, and mk are markdown and define buffer-local preview
-au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} call s:setupMarkup()
 
 " Enable syntax highlighting
 let g:syntastic_enable_signs=1
@@ -144,8 +135,6 @@ imap <D-/> <Esc><plug>NERDCommenterToggle<CR>i
 " Command-][ to increase/decrease indentation
 vmap <D-]> >gv
 vmap <D-[> <gv
-
-let g:historicBackupOnSave = 1
 
 " When vimrc is edited, reload it
 autocmd! BufWritePost vimrc source ~/.vim/vimrc
