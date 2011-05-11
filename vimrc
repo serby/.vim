@@ -42,7 +42,11 @@ endif
 
 " Colors
 syntax enable
-set background=light
+if has('gui_running')
+    set background=light
+else
+    set background=dark
+endif
 colorscheme solarized
 
 filetype plugin on
