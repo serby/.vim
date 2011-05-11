@@ -88,10 +88,14 @@ autocmd! FileType php nmap <leader>m :!php %<cr>
 autocmd! FileType php nmap <leader>l :!php -l %<cr>
 autocmd! BufWrite *.php :%s/\s\+$//e
 
+map <leader>mes :!phpmd % text codesize,unusedcode,naming,design<cr>
+map <c-m> :make %<cr>:Errors<cr>
+
+set hidden
 
 " Buffer navigation
 map <leader>l :ls<cr>:b<space>
-map <leader>q :bd<cr>
+map <leader>q :bd!<cr>
 map <leader>] :bn<cr>
 map <leader>[ :bp<cr>
 
