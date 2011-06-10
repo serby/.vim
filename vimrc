@@ -2,13 +2,11 @@ call pathogen#helptags()
 call pathogen#runtime_append_all_bundles()
 
 set laststatus=2
-set statusline=%m\ %{fugitive#statusline()}%=%c:%l/%L
 
 set statusline=
 set statusline+=%n\ %f\ %2*%m\ %1*%h
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%{fugitive#statusline()}
 set statusline+=%*
 set statusline+=%r%=[%{&encoding}\ %{&fileformat}\ %{strlen(&ft)?&ft:'none'}]\ %12.(%c:%l/%L%)
 
@@ -27,7 +25,7 @@ set spell
 set linespace=1
 set visualbell
 set nobackup
-
+set mouse=a
 " Searching
 set hlsearch
 set incsearch
@@ -60,8 +58,8 @@ set listchars=tab:▸\ ,trail:☠
 " Fast saving
 nmap <leader>w :w!<cr>
 
-" New Tab
-nmap <leader>n :NERDTreeToggle<cr>
+" Taglist toggle
+nmap <leader>n :TlistToggle<cr>
 
 " Remove mixed line endings
 nmap <leader>= :%s/\s*$//e<cr>:nohl<cr>
@@ -70,10 +68,11 @@ nmap <leader>= :%s/\s*$//e<cr>:nohl<cr>
 " Git shortcuts
 "nmap <leader>l :Glog<cr>
 "nmap <leader>b :Gblame<cr>
-nmap <leader>a :Gwrite<cr>
-nmap <leader>c :Gcommit<cr>
-nmap <leader>d :Gdiff<cr>
-nmap <leader>s :Gstatus<cr>
+"nmap <leader>a :Gwrite<cr>
+"nmap <leader>c :Gcommit<cr>
+"nmap <leader>d :Gdiff<cr>
+"nmap <leader>s :Gstatus<cr>
+"nmap <leader>f :!open .<cr><cr>
 
 nmap <leader>o :edit <c-r>=expand("%:p:h")<cr><cr>
 
@@ -90,10 +89,10 @@ autocmd! FileType javascript nmap <leader>m :!node --debug %<cr>
 autocmd! FileType vim nmap <c-m>:source %<cr>
 autocmd! FileType php nmap <leader>m :!php %<cr>
 autocmd! FileType php nmap <leader>l :!php -l %<cr>
-autocmd! BufWrite *.php :%s/\s\+$//e
+autocmd! BufWrite *.php,*.js :%s/\s\+$//e
 
 map <leader>mes :!phpmd % text codesize,unusedcode,naming,design<cr>
-map <c-m> :make %<cr>:Errors<cr>
+"map <c-m> :make %<cr>:Errors<cr>
 
 set hidden
 
@@ -133,7 +132,10 @@ let g:syntastic_enable_signs=1
 let g:syntastic_quiet_warnings=1
 
 " CTags
-autocmd! FileType php map <leader>rt :!ctags -R -h ".php" --exclude="\.svn" --fields=+afkst --PHP-kinds=+cf *<CR><CR>
+autocmd! FileType php map <leader>rt :!ctags -R -h ".php" --exclude="\.js" --exclude="\.svn" --fields=+afkst --PHP-kinds=+cf *<CR><CR>
+
+autocmd! FileType javascript map <leader>rt :!ctags -R -h ".js" --langdef=js --langmap=js:.js --regex-js=/([A-Za-z0-9._$]+)[ \t]*[:=][ \t]*\{/\1/,object/ --regex-js=/([A-Za-z0-9._$()]+)[ \t]*[:=][ \t]*function[ \t]*\(/\1/,function/ --regex-js=/function[ \t]+([A-Za-z0-9._$]+)[ \t]*\(([^)])\)/\1/,function/ --regex-js=/([A-Za-z0-9._$]+)[ \t]*[:=][ \t]*\[/\1/,array/ --regex-js=/([^= ]+)[ \t]*=[ \t]*[^"]'[^']*/\1/,string/ --regex-js=/([^= ]+)[ \t]*=[ \t]*[^']"[^"]*/\1/,string/
+
 map <C-\> :tnext<CR>
 
 " Command-/ to toggle comments
@@ -141,8 +143,8 @@ map <D-/> <plug>NERDCommenterToggle
 imap <D-/> <Esc><plug>NERDCommenterToggle<CR>i
 
 " Command-][ to increase/decrease indentation
-vmap <D-]> >gv
-vmap <D-[> <gv
+map! <D-]> >gv
+map! <D-[> <gv
 
 " When vimrc is edited, reload it
 autocmd! BufWritePost vimrc source ~/.vim/vimrc
