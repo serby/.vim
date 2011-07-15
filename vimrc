@@ -89,12 +89,12 @@ autocmd! FileType javascript nmap <leader>m :!node --debug %<cr>
 autocmd! FileType vim nmap <c-m>:source %<cr>
 autocmd! FileType php nmap <leader>m :!php %<cr>
 autocmd! FileType php nmap <leader>l :!php -l %<cr>
-autocmd! BufWrite *.php,*.js :%s/\s\+$//e
+autocmd! BufWrite *.php,*.js,*.jade :%s/\s\+$//e
 
 map <leader>mes :!phpmd % text codesize,unusedcode,naming,design<cr>
 "map <c-m> :make %<cr>:Errors<cr>
 
-set hidden
+"set hidden
 
 " Buffer navigation
 map <leader>l :ls<cr>:b<space>
@@ -126,6 +126,9 @@ autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
+
+" Switch off folding
+set nofoldenable 
 
 " Enable syntax highlighting
 let g:syntastic_enable_signs=1

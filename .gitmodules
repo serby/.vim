@@ -49,9 +49,9 @@
 [submodule "bundle/vim-colors-solarized"]
 	path = bundle/vim-colors-solarized
 	url = git://github.com/altercation/vim-colors-solarized.git
-[submodule "vim-syntastic"]
-	path = vim-syntastic
-	url = git://github.com/grayrest/vim-syntastic.git
-[submodule "bundle/phpcomplete"]
-	path = bundle/phpcomplete
-	url = git://github.com/shawncplus/phpcomplete.vim.git
+[submodule "bundle/vim-fugitive"]
+	path = bundle/vim-fugitive
+	url = git://github.com/tpope/vim-fugitive.git
+[submodule "bundle/vim-coffee-script"]
+	path = bundle/vim-coffee-script
+	url = git://github.com/kchmck/vim-coffee-script.git
