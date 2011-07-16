@@ -76,8 +76,15 @@ nmap <leader>= :%s/\s*$//e<cr>:nohl<cr>
 
 nmap <leader>o :edit <c-r>=expand("%:p:h")<cr><cr>
 
-" Fast editing of the .vimrc
-map <leader>e :e! ~/.vim/vimrc<cr>
+set undofile
+set undodir=~/.vim.undo
+set undolevels=1000
+set undoreload=10000
+
+
+" Fast editing for config files
+map <leader>e :tabedit! ~/.vim/vimrc<cr>
+map <leader>z :tabedit! ~/.zshrc<cr>
 
 " add json syntax highlighting
 au BufNewFile,BufRead *.json set ft=javascript
@@ -128,7 +135,7 @@ autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
 " Switch off folding
-set nofoldenable 
+set nofoldenable
 
 " Enable syntax highlighting
 let g:syntastic_enable_signs=1
