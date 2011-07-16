@@ -89,7 +89,7 @@ autocmd! FileType javascript nmap <leader>m :!node --debug %<cr>
 autocmd! FileType vim nmap <c-m>:source %<cr>
 autocmd! FileType php nmap <leader>m :!php %<cr>
 autocmd! FileType php nmap <leader>l :!php -l %<cr>
-autocmd! BufWrite *.php,*.js,*.jade :%s/\s\+$//e
+autocmd! BufWrite *.php,*.js,*.jade,*.coffee :%s/\s\+$//e
 
 map <leader>mes :!phpmd % text codesize,unusedcode,naming,design<cr>
 "map <c-m> :make %<cr>:Errors<cr>
