@@ -45,6 +45,7 @@ if has('gui_running')
 else
     set background=dark
 endif
+set background=dark
 colorscheme solarized
 
 filetype plugin on
@@ -76,10 +77,10 @@ nmap <leader>= :%s/\s*$//e<cr>:nohl<cr>
 
 nmap <leader>o :edit <c-r>=expand("%:p:h")<cr><cr>
 
-set undofile
-set undodir=~/.vim.undo
-set undolevels=1000
-set undoreload=10000
+"set undofile
+"set undodir=~/.vim.undo
+"set undolevels=1000
+"set undoreload=10000
 
 
 " Fast editing for config files
@@ -144,7 +145,7 @@ let g:syntastic_quiet_warnings=1
 " CTags
 autocmd! FileType php map <leader>rt :!ctags -R -h ".php" --exclude="\.js" --exclude="\.svn" --fields=+afkst --PHP-kinds=+cf *<CR><CR>
 
-autocmd! FileType javascript map <leader>rt :!ctags -R -h ".js" --langdef=js --langmap=js:.js --regex-js=/([A-Za-z0-9._$]+)[ \t]*[:=][ \t]*\{/\1/,object/ --regex-js=/([A-Za-z0-9._$()]+)[ \t]*[:=][ \t]*function[ \t]*\(/\1/,function/ --regex-js=/function[ \t]+([A-Za-z0-9._$]+)[ \t]*\(([^)])\)/\1/,function/ --regex-js=/([A-Za-z0-9._$]+)[ \t]*[:=][ \t]*\[/\1/,array/ --regex-js=/([^= ]+)[ \t]*=[ \t]*[^"]'[^']*/\1/,string/ --regex-js=/([^= ]+)[ \t]*=[ \t]*[^']"[^"]*/\1/,string/
+autocmd! FileType javascript map <leader>rt :!ctags -R -h ".js" .<cr><cr>
 
 map <C-\> :tnext<CR>
 
