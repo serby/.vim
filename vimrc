@@ -1,3 +1,4 @@
+set nocompatible
 call pathogen#helptags()
 call pathogen#runtime_append_all_bundles()
 
@@ -27,7 +28,7 @@ set visualbell
 set nobackup
 set mouse=a
 " Searching
-set hlsearch
+set nohlsearch
 set incsearch
 set ignorecase
 set smartcase
@@ -97,7 +98,8 @@ autocmd! FileType javascript nmap <leader>m :!node --debug %<cr>
 autocmd! FileType vim nmap <c-m>:source %<cr>
 autocmd! FileType php nmap <leader>m :!php %<cr>
 autocmd! FileType php nmap <leader>l :!php -l %<cr>
-autocmd! BufWrite *.php,*.js,*.jade,*.coffee :%s/\s\+$//e
+autocmd! BufWrite *.php,*.js,*.coffee :%s/\s\+$//e
+autocmd! BufWrite *.jade :%s/^\s\+$//e
 
 map <leader>mes :!phpmd % text codesize,unusedcode,naming,design<cr>
 "map <c-m> :make %<cr>:Errors<cr>
