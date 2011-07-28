@@ -28,7 +28,7 @@ set visualbell
 set nobackup
 set mouse=a
 " Searching
-set nohlsearch
+set hlsearch
 set incsearch
 set ignorecase
 set smartcase
@@ -111,6 +111,9 @@ map <leader>l :ls<cr>:b<space>
 map <leader>q :bd!<cr>
 map <leader>] :bn<cr>
 map <leader>[ :bp<cr>
+
+" Git 
+map <leader>c :Gwrite<cr>:Gcommit<cr>
 
 " Stop arrow keys
 nmap <up> ]
