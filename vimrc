@@ -116,10 +116,10 @@ map <leader>[ :bp<cr>
 map <leader>c :Gwrite<cr>:Gcommit<cr>
 
 " Stop arrow keys
-nmap <up> ]
-nmap <right> ]
-nmap <left> ]
-nmap <down> ]
+nmap <up> <nop>
+nmap <right> <nop>
+nmap <left> <nop>
+nmap <down> <nop>
 
 autocmd! FileType php map <c-p> :!open http://uk3.php.net/<cword><cr>
 
@@ -158,9 +158,6 @@ map <C-\> :tnext<CR>
 map <D-/> <plug>NERDCommenterToggle
 imap <D-/> <Esc><plug>NERDCommenterToggle<CR>i
 
-" Command-][ to increase/decrease indentation
-map! <D-]> >gv
-map! <D-[> <gv
 
 " When vimrc is edited, reload it
 autocmd! BufWritePost vimrc source ~/.vim/vimrc
